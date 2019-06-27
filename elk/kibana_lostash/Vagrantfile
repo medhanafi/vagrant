@@ -1,0 +1,13 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |ubuntu|
+		ubuntu.vm.hostname = "logstashkibana"
+		ubuntu.vm.network "private_network", ip: "192.168.33.23"
+        ubuntu.vm.box = "ubuntu/bionic64"
+        ubuntu.vm.network :forwarded_port, guest: 5601, host: 5601
+		ubuntu.vm.provision :shell, :path => "../java_install.sh"
+		ubuntu.vm.synced_folder ".", "/home/vagrant/data", nfs:true
+        ubuntu.vm.provider :virtualbox do |v|
+            v.name = "ubuntu_logstash_kibana_1"
+    end
+end

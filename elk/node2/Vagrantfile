@@ -1,0 +1,12 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |ubuntu|
+		ubuntu.vm.hostname = "elasticnode2"
+		ubuntu.vm.network "private_network", ip: "192.168.33.22"
+        ubuntu.vm.box = "ubuntu/bionic64"
+        ubuntu.vm.network :forwarded_port, guest: 9202, host: 9202
+        ubuntu.vm.provision :shell, :path => "../ubuntubootstrap.sh"
+        ubuntu.vm.provider :virtualbox do |v|
+            v.name = "ubuntu_elasticsearch_2"
+    end
+end
