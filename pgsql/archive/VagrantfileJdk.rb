@@ -1,0 +1,11 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+  end
+
+  # IP to access the VM from another software :
+  config.vm.network "private_network", ip: "192.168.56.101"
+  config.vm.provision "shell", inline: "sudo apt-get update && sudo apt-get upgrade -y"
+end
