@@ -9,5 +9,6 @@ Vagrant.configure("2") do |ubuntu|
 		ubuntu.vm.synced_folder ".", "/home/vagrant/data", nfs:true
         ubuntu.vm.provider :virtualbox do |v|
             v.name = "ubuntu_logstash_kibana_1"
+			v.memory = 2048
     end
 end
